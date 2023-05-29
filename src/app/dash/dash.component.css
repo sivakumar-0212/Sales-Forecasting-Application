@@ -1,0 +1,31 @@
+.dash_bg{
+    background: url("/assets/bg/7.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+  }
+  .float{
+    animation-name: float;
+    animation-duration: 12s;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+  }
+  @keyframes float {
+    0%{
+      transform: translateY(-7px);
+    }
+    25%{
+      transform: translateY(7px);
+    }
+    50%{
+      transform: translateY(-7px);
+    }
+    75%{
+      transform: translateY(7px);
+    }
+    100%{
+      transform: translateY(-7px);
+    }
+    
+  }

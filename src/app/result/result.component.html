@@ -1,0 +1,44 @@
+<div>
+  <mat-toolbar style="background-color: darkblue;">
+    <img width="60" alt="Angular Logo"
+    src="/assets/images/s2.png" />
+ 
+  <h1 style="color: rgb(240, 240, 243);padding-top: 12PX;margin-left: 3%;font-size:xx-large">
+    <STRONG>PREDICTION RESULT</STRONG>
+  </h1>
+  <a mat-raised-button color="warn" routerLink="/dash" routerLinkActive="active" style="margin-left: 50%;"><mat-icon>home</mat-icon><span>HOME</span></a>
+  <a mat-raised-button color="warn" routerLink="/login" routerLinkActive="active" style="margin-left:2%;">
+    <mat-icon>logout</mat-icon><span>LOGOUT</span>
+  </a>
+</mat-toolbar>
+<BR>
+</div>
+<div class="row">
+  <div class="col-lg-8 canvasDiv">
+    <div id="divChart" fxLayout="row" fxLayoutAlign="start center">
+      <mat-card fxFlex="50%" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+        <mat-card-title fxLayoutAlign="center center"><STRONG>LINECHART</STRONG></mat-card-title>
+      <canvas id="myChart"></canvas>
+    </mat-card>
+      <!-- <canvas id="linePlot" data="lineChart"></canvas>
+      <br /> -->
+      <mat-card fxFlex="120%" style="margin-left:2%;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+        
+        <mat-card-title fxLayoutAlign="center center"><STRONG>BARCHART</STRONG></mat-card-title>
+      <canvas id="barchart"></canvas>
+    </mat-card>
+    </div>
+  </div>
+  
+  <br>
+  <div>
+    <h1 class="metrics-heading"><strong>PREDICTION METRICS</strong></h1>
+    <div class="card">
+      <div class="card-body">
+        <h3><b>R2 Score : </b>{{ val[0] }}</h3>
+        <h3><b>Mean Absolute Percentage Error : </b>{{val[2]}}</h3>
+        <h3><b>Mean Absolute Error : </b>{{ val[1] }}</h3>
+        <h3><b>Mean Squared Error : </b>{{ val[3] }}</h3>
+      </div>
+    </div>
+<router-outlet></router-outlet>

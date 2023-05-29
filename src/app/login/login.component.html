@@ -1,0 +1,42 @@
+<div class="login_bg" fxLayoutAlign="start center"fxFlexFill style="width: 70%;margin-top:5%;background-color:rgb(249, 249, 249); ">
+  <mat-card fxFlex="35" class="float" style="box-shadow: rgba(0, 0, 0, 0.35) 7px 15px 20px;border-radius: 4px;margin-left: 10%;">
+    <div style="align-content: center;">
+    <mat-toolbar style="background-color: rgb(46, 7, 189); color: #fff;font-size:10%;
+    align-content: center;height:3%;padding-top: 10px; border-radius: 4px;" fxLayoutAlign="center center">
+    <br><br>
+        <h1><STRong>LOGIN</STRong></h1> 
+      </mat-toolbar>
+    </div>
+    <mat-card-content style="margin-top: 5%;
+    font-size: large;
+    align-content: center;
+    text-align: center;
+    color:black">
+      <form [formGroup]="loginform" (ngSubmit)="submit()">
+        <mat-form-field appearance="outline" style="width: 90%;">
+          <mat-label>username</mat-label>
+          <input matInput type="text" formControlName="name">
+          <mat-icon matPrefix>perm_identity</mat-icon>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline" style="width: 90%">
+          <mat-label>password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+          <mat-icon matPrefix>lock_outlin</mat-icon>
+          <mat-icon matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+           {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+        <mat-card-actions style="margin-left: 35%;">
+          <button type="submit" mat-raised-button color="primary">Login</button>
+        </mat-card-actions>
+      </form>
+      <br>
+      <div >
+        Don`t have an account ? <a routerLink="/signup">Sign Up</a> here.
+      </div>
+      <br>
+    </mat-card-content>
+  </mat-card>
+</div>
+<router-outlet></router-outlet>

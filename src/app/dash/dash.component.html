@@ -1,0 +1,79 @@
+<div>
+  <mat-toolbar style="background-color: darkblue;"> 
+    <img width="70" alt="Angular Logo"
+    src="/assets/images/S3.png" />
+ 
+    <h1 style="color: rgb(240, 240, 243);padding-top: 12PX;margin-left: 3%;font-size:xx-large">
+    <STRONG>SALES PREDICTION</STRONG>
+  </h1>
+  <a mat-raised-button color="warn" routerLink="/login" routerLinkActive="active" style="margin-left:55%">
+    <mat-icon>logout</mat-icon><span>LOGOUT</span>
+  </a>
+</mat-toolbar>
+</div>
+<div fxLayoutAlign="start center" fxFlexFill class="dash_bg">
+  
+    <mat-card class="float" fxFlex="50"style="margin-top:-7%;box-shadow: rgba(0, 0, 0, 0.35) 20px 20px 20px;border-radius: 4px;margin-left:10%">
+      <mat-toolbar style="background-color:darkred; color: whitesmoke;font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">INPUT YOUR RANGE</mat-toolbar>
+      <br>
+      <form
+      #form action="http://127.0.0.1:5000/predict"  method="POST"
+        fxLayoutAlign="stretch"
+        fxLayout="column"
+        class="home-form"
+        enctype="multipart/form-data" 
+        [formGroup]="homeform">
+         
+  
+        <mat-form-field style="margin-top: 15px" appearance="outline" >
+         <input name="perselect" [value]="perselectvalue" hidden>
+         <mat-label style="color:black" >SELECT PERIOD TO PREDICT</mat-label>
+            <mat-select  [formControl]="periodControl" (selectionChange)="changeClient($event.value)">
+            <mat-option *ngFor="let pr of period" [value]="pr" >
+              {{ pr }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="periodControl.hasError('required')"
+            >Please choose a period</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label style="color:black">DURATION</mat-label>
+            <input matInput placeholder="Enter Duration Length" [formControl]="numFormControl" [errorStateMatcher]="matcher"
+            type="number" name="number" min="1"/>
+            <mat-error *ngIf="numFormControl.hasError('required')">
+                 Value is <strong>required</strong>
+             </mat-error>
+        </mat-form-field>
+
+        <input type="file" class="file-input" hidden accept=".csv" (change)="onFileSelected($event)" #fileUpload name="file"/>
+        <div style="margin-left: 5%;" class="file-upload">
+          {{filename || "No file uploaded yet."}}
+          <button mat-mini-fab color="primary" class="upload-btn" type="button" (click)="fileUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+        </div>
+
+  
+        <div fxLayoutAlign="center center">
+  
+          <button id="home_btn_predict" mat-raised-button color="primary" type="submit" name="ped" (click)="form.submit()"
+            [disabled]="numFormControl.invalid || periodControl.invalid || !fileuploadflag">
+            CONFIRM
+          </button>
+  
+        </div>
+        <br>
+          
+   
+      </form>
+    </mat-card>
+  </div>
+<!-- 
+  <div class="main">
+    <div class="text">If you give the </div>
+    <ul class="option">
+    <li><span>Period as week and Duration as 2 it will predict for next 2 weeks</span></li>
+    </ul>
+    </div> -->
+  <router-outlet></router-outlet>

@@ -1,0 +1,74 @@
+<div class="toolbar" role="banner" style="height: 12%;">
+  <span></span>
+  <img width="50" alt="Angular Logo"
+    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==" />
+  <span style="font-size: xx-large;">SALES PREDICTION</span>
+  <a mat-fab color="warn" routerLink="/login" routerLinkActive="active" style="margin-left: 60%;">
+    <mat-icon>logout</mat-icon>
+  </a>
+</div>
+<br>
+<div fxLayoutAlign="center center" fxFlexFill style="margin-top:-20%; background-color:rgb(235, 241, 236);">
+  <mat-card style="background-color:rgb(249, 246, 243) "fxFlex="40">
+    <mat-card-header style="font-size: xx-large;text-align: center;font-weight: 900;">Input your Range</mat-card-header>
+    <mat-card-content>
+      <br>
+      <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+      <div>
+        <p class=".auto-input"></p>
+      </div>
+    <script>
+        var type=new Typed(".auto-input",
+        {
+            strings:["Ijaas","Web Devoloper","UI Designer"],
+            typeSpeed: 100,
+            backSpeed: 100,
+            loop:true,
+        
+        })
+    </script>
+
+      <!-- #form action="http://127.0.0.1:5000/predict"  method="POST"  -->
+      <form enctype="multipart/form-data" 
+      fxLayoutAlign="stretch" fxLayout="column" [formGroup]="homeform" (ngSubmit)="proceedhome()">
+
+        <mat-form-field appearance="outline">
+        <input name="perselect" [value]="perselectvalue" hidden>
+        <mat-label style="color: black;" required>Select period for prediction</mat-label>
+        <mat-select name="period" (selectionChange)="changeClient($event.value)" formControlName="period">
+          <mat-option *ngFor="let chr of period" [value]="chr">{{chr}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+        <!-- <div class="example-label-container">
+          <label id="example-name-label" class="example-name-label">Value</label>
+          <label>{{values}}</label>
+        </div>
+        <mat-slider min="0" max="30" step="1" showTickMarks discrete [displayWith]="formatLabel" style="width: 50%;">
+          <input  matSliderThumb [(value)]="values" formControlName="values" required>
+        </mat-slider>
+        <br> -->
+        <mat-form-field appearance="outline">
+        <input matInput placeholder="Enter Duration" type="number" name="values" required formControlName="values" min="1">
+        <mat-hint>Duration for Prediction</mat-hint>
+      </mat-form-field>
+      <br>
+
+        <input type="file" class="file-input" (change)="onFileSelected($event)" required name="fileto" formControlName="fileto" accept=".csv,.xml" required #fileUpload>
+        <div class="file-upload">
+          {{fileName || "No file uploaded yet."}}
+          <button mat-mini-fab color="primary" class="upload-btn" type="button" (click)="fileUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+        </div>
+        <br><br>
+        <!--  (click)="form.submit()"  -->
+        <button type="submit" color="primary">Confirm</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+</div>
+
+<router-outlet></router-outlet>
+
+<!-- https://www.kaggle.com/code/ashydv/sales-prediction-simple-linear-regression/notebook -->
